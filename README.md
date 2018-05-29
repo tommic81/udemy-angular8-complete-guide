@@ -71,6 +71,13 @@ ng serve
 ###### @Component section
 
 - `selector` - name of a custom selector ie. `<my-selector>`
+  - 'foo-selector' - normal selector
+  - '[foo-selector]' - attribute selector
+  - '.foo-selector' - class selector
+- styleUrls - urls to css files
+  - alternativaly inline styles: `styles:`
+- templateUrl - urls to template files
+  - alternativaly inline template:  `template:` 
 
 ###### export class AppComponent{}
 
