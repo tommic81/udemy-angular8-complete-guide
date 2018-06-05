@@ -141,3 +141,100 @@ ng serve
 ng g c servers
 ```
 
+##### Databinding
+
+- Communication between TypeScript Code and Template
+
+- Output Data:
+
+  - String Interpolation - `{{data}}`
+
+  ```
+  // .html
+  // displays Strings or everything what can be converted to String 
+  <p>{{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}</p>
+
+  //.ts
+  export class ServerComponent {
+      serverId = 10;
+      serverStatus = 'offline';
+
+      getServerStatus() {
+          return this.serverStatus;
+      }
+  }
+
+  ```
+
+  - Property Binding - `[property]="data"`
+
+    ```
+    // .html
+    <button class="btn btn-primary" [disabled]="!allowNewServer">Add Server</button>
+
+    // .ts
+    allowNewServer = false;
+
+    constructor() {
+       setTimeout(() => {
+          this.allowNewServer = true;
+       }, 2000);
+    }
+    ```
+
+    ​
+
+- React to User Events
+
+  - Event Binding - `(event)="expression"`
+
+  - For events, you don't bind to **onclick** but only to **click**
+
+  - You can `console.log()`  the element you're interested in to see which properties and events it offers
+
+    ```
+    // .html
+    <button class="btn btn-primary" [disabled]="!allowNewServer"
+    (click)="onCreateServer()">Add Server</button>
+
+    // .ts
+    onCreateServer() {
+        this.serverCreationStatus = 'Server was created';
+      }
+    ```
+
+  - Passing events with data to the typescript
+
+    ```
+    // .html
+    <input type="text" class="form-control" (input)="onUpdateServerName($event)">
+
+    // .ts
+     onUpdateServerName(event: Event) {
+        this.serverName = (<HTMLInputElement> event.target).value;
+      }
+    ```
+
+    ​
+
+- Combination of Both
+
+  - Two Way Binding - `[(ngModel)]="data"`
+
+  - FormsModule is Required 
+
+  - You need to add `FormsModule`  to the `imports[]`  array in the AppModule
+
+  - Then import from `@angular/forms` 
+
+    `import { FormsModule } from '@angular/forms';` 
+
+  ```
+  // .html
+  <input type="text" class="form-control" [(ngModel)]="serverName">
+  <p>{{ serverName }}</p>
+  ```
+
+##### Directives
+
+- Instructions in the DOM
