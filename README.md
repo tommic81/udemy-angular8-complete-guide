@@ -27,12 +27,39 @@ ng new my-first-app
 ng serve
 ```
 
-##### Directories
+##### Directories and files
+
+- package.json - dependencies
 
 - e2e - end 2 end testing
-- node_modules - dependencies
+
+- node_modules - installed dependencies
+
 - src - source code
+
   - app - our app code
+
+    - .html - template
+
+    - .css - styles
+
+    - .module.ts - importing angular modules
+
+    - .ts - definition of a component. Converted to js.
+
+      ```typescript
+      import { Component } from '@angular/core';
+      
+      @Component({
+        selector: 'app-root', //component's tag. It is refered by index.html.
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+      })
+      export class AppComponent {
+        title = 'my-first-app';
+      }
+      
+      ```
 
 #### Boostrap styling
 
