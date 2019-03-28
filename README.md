@@ -37,13 +37,36 @@ ng serve
 
 - src - source code
 
+  - styles.css - global styles
+
+  - index.html - root page loads all components
+
+  - main.ts - code executed first
+
+    ```typescript
+    //bootstraping module app.module
+    import { AppModule } from './app/app.module';
+    
+    platformBrowserDynamic().bootstrapModule(AppModule)
+      .catch(err => console.error(err));
+    ```
+
+    
+
   - app - our app code
 
     - .html - template
 
     - .css - styles
 
-    - .module.ts - importing angular modules
+    - app.module.ts - importing angular modules
+
+      ~~~typescript
+      //bootstrap component AppComponent
+      bootstrap: [AppComponent]
+      ~~~
+
+      
 
     - .ts - definition of a component. Converted to js.
 
@@ -66,7 +89,7 @@ ng serve
 1. Installation
 
    ```shell
-   npm i --save bootstrap3
+   npm install --save bootstrap@3
    ```
 
 2. Add bootstrap in **Angular.json** file.
@@ -148,13 +171,14 @@ ng serve
 
      ```typescript
      import { Component } from '@angular/core';
-
+     //decorator
      @Component({
          selector: 'app-server',
          templateUrl: './server.component.html'
      })
+     //export to make it visible outside
      export class ServerComponent {
-
+     
      }
      ```
 
@@ -164,8 +188,9 @@ ng serve
 
    ```typescript
    import { ServerComponent } from './server/server.component';
-
+   
    @NgModule({
+       //registration new components
      declarations: [
        AppComponent,
        ServerComponent // <--- my component
@@ -175,15 +200,65 @@ ng serve
        FormsModule
      ],
      providers: [],
+     //which component should be recognized in index.html. Leave as it is!!!  
      bootstrap: [AppComponent]
    })
    ```
 
-##### Creating components automaticaly
+##### Creating components automatically
 
 ```typescript
 ng g c servers
 ```
+
+##### Selectors
+
+- Element selector
+
+  ```typescript
+  @Component({
+  //component selector
+    selector: 'app-servers',
+    template: '<app-server></app-server><app-server></app-server>',
+    styleUrls: ['./servers.component.css']
+  })
+  ```
+
+- Attribute selector
+
+  ```typescript
+  @Component({
+  //attribute selector
+    selector: '[app-servers]',
+    template: '<app-server></app-server><app-server></app-server>',
+    styleUrls: ['./servers.component.css']
+  })
+  ```
+  -  Using
+
+  ```html
+   <div app-servers></div>
+  ```
+
+- Class selector
+
+  ```typescript
+  @Component({
+    selector: '.app-servers',
+    template: '<app-server></app-server><app-server></app-server>',
+    styleUrls: ['./servers.component.css']
+  })
+  ```
+
+  - Using 
+
+    ```html
+    <div class="app-servers"></div>
+    ```
+
+    
+
+
 
 ##### Databinding
 
