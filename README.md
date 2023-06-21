@@ -96,7 +96,7 @@ ng serve
 
    ```json
    "styles": [
-   	           "node_modules/bootstrap3/dist/css/bootstrap.min.css",
+   	           "node_modules/bootstrap/dist/css/bootstrap.min.css",
        	       "src/styles.css"
              ]
    ```
@@ -304,7 +304,7 @@ constructor() {
 }
 ```
 
-​
+
 
 ###### React to User Events
 
@@ -339,7 +339,7 @@ constructor() {
     }
   ```
 
-  ​
+  
 
 ###### Bindable Properties and Events
 
